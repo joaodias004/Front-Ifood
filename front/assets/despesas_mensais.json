@@ -1,0 +1,10 @@
+{
+    "monthly_expenses": {
+      "label": [
+        "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro", 
+        "Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho"
+      ],
+      "data": [1900, 2000, 1700, 1600, 1800, 1200, 1500, 1700, 1300, 1600, 1800, 1400]
+    }
+  }
+  

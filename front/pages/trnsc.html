@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Transações Recentes</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/assets/css/styles.css">
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <nav class="col-md-3 col-lg-2 d-md-block sidebar collapse">
+                <div class="position-sticky">
+                    <h5 class="px-3 mb-3">Gerenciamento</h5>
+                    <ul class="nav flex-column">
+                        <li class="nav-item">
+                            <a class="nav-link" href="#"><i class="fas fa-home me-2"></i>Página inicial</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#"><i class="fas fa-wallet me-2"></i>Saldos</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" href="#"><i class="fas fa-exchange-alt me-2"></i>Transações</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#"><i class="fas fa-file-invoice-dollar me-2"></i>Contas</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#"><i class="fas fa-chart-pie me-2"></i>Gastos</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#"><i class="fas fa-bullseye me-2"></i>Metas</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#"><i class="fas fa-cog me-2"></i>Preferências</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="position-absolute bottom-0 start-0 p-3 w-100">
+                    <a class="nav-link text-white" href="#"><i class="fas fa-sign-out-alt me-2"></i>Sair</a>
+                    <div class="d-flex align-items-center mt-2">
+                        <span>João Vitor</span>
+                        <button class="btn btn-link text-white-50 ms-2 p-0">Ver perfil</button>
+                    </div>
+                </div>
+            </nav>
+            <!-- Main content -->
+            <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4 main-content">
+                <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+                    <h6 class="mb-0">Junho 14, 2024</h6>
+                    <div class="input-group w-25">
+                        <input type="text" class="form-control" placeholder="Buscar...">
+                        <button class="btn btn-outline-secondary" type="button"><i class="fas fa-search"></i></button>
+                    </div>
+                </div>
+
+                <!-- Heading and tabs outside of the card -->
+                <header class="mb-4">
+                    <h5 class="card-title mb-4">Transações recentes</h5>
+                    <ul class="nav nav-tabs mb-3" id="myTab" role="tablist">
+                        <li class="nav-item" role="presentation">
+                            <a class="nav-link active" id="all-tab" data-bs-toggle="tab" href="#all" role="tab" aria-controls="all" aria-selected="true">Todas</a>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <a class="nav-link" id="income-tab" data-bs-toggle="tab" href="#income" role="tab" aria-controls="income" aria-selected="false">Ganhos</a>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <a class="nav-link" id="expenses-tab" data-bs-toggle="tab" href="#expenses" role="tab" aria-controls="expenses" aria-selected="false">Gastos</a>
+                        </li>
+                    </ul>
+                    <div class="d-flex justify-content-end mb-3">
+                        <select class="form-select w-auto">
+                            <option selected>Tipo de Transação</option>
+                        </select>
+                    </div>
+                </header>
+
+                <!-- Tab Content -->
+    <div class="tab-content" id="myTabContent">
+        <!--Todas as transações-->
+        <div class="tab-pane fade show active" id="all" role="tabpanel" aria-labelledby="all-tab">
+            <div class="card">
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table" id="all-transactions-table">
+                            <thead>
+                                <tr>
+                                    <th>Item</th>
+                                    <th>Tipo</th>
+                                    <th>Data</th>
+                                    <th>Forma De Pagamento</th>
+                                    <th class="text-end">Quantia</th>
+                                </tr>
+                            </thead>
+                            <tbody></tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Ganhos -->
+        <div class="tab-pane fade" id="income" role="tabpanel" aria-labelledby="income-tab">
+            <div class="card">
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table" id="income-transactions-table">
+                            <thead>
+                                <tr>
+                                    <th>Item</th>
+                                    <th>Tipo</th>
+                                    <th>Data</th>
+                                    <th>Forma De Pagamento</th>
+                                    <th class="text-end">Quantia</th>
+                                </tr>
+                            </thead>
+                            <tbody></tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Gastos -->
+        <div class="tab-pane fade" id="expenses" role="tabpanel" aria-labelledby="expenses-tab">
+            <div class="card">
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table" id="expenses-transactions-table">
+                            <thead>
+                                <tr>
+                                    <th>Item</th>
+                                    <th>Tipo</th>
+                                    <th>Data</th>
+                                    <th>Forma De Pagamento</th>
+                                    <th class="text-end">Quantia</th>
+                                </tr>
+                            </thead>
+                            <tbody></tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.1.3/js/bootstrap.bundle.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+    fetch('/assets/transactions.json')
+        .then(response => response.json())
+        .then(data => {
+            console.log('Fetched data:', data);
+            const transactions = data.transactions.reduce((acc, transactionType) => {
+                acc[transactionType.type] = transactionType.items;
+                return acc;
+            }, {});
+
+            const fillTable = (id, transactions) => {
+                if (!Array.isArray(transactions)) {
+                    console.error(`Expected an array for ${id}, but got`, transactions);
+                    return;
+                }
+                const tableBody = document.querySelector(`#${id} tbody`);
+                tableBody.innerHTML = transactions.map(transaction => `
+                    <tr>
+                        <td class="transaction-info"><i class="${transaction.icon} me-2"></i>${transaction.item}</td>
+                        <td class="transaction-details">${transaction.type}</td>
+                        <td class="transaction-details">${transaction.date}</td>
+                        <td class="transaction-details">${transaction.payment_method}</td>
+                        <td class="transaction-amount text-end">${transaction.amount}</td>
+                    </tr>
+                `).join('');
+            };
+
+            fillTable('all-transactions-table', transactions['all'] || []);
+            fillTable('income-transactions-table', transactions['income'] || []);
+            fillTable('expenses-transactions-table', transactions['expenses'] || []);
+        })
+        .catch(error => console.error('Error fetching transactions:', error));
+});
+    </script>
+</body>
+</html>

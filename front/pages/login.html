@@ -5,35 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gerenciamento - Login</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.1.3/css/bootstrap.min.css" rel="stylesheet">
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap');
-        body {
-            font-family: 'Poppins', sans-serif;
-            background-color: #f8f9fa;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            height: 100vh;
-        }
-        .login-form {
-            width: 100%;
-            max-width: 330px;
-            padding: 15px;
-            margin: auto;
-        }
-        .btn-google {
-            background-color: #fff;
-            color: #757575;
-            border: 1px solid #ddd;
-        }
-        .text{
-            color: #A52A2A;
-        }
-        .Login-btn{
-            color: #ffffff;
-            background-color: #A52A2A;
-        }
-    </style>
+    <link rel="stylesheet" href="/assets/css/login.css">
 </head>
 <body>
     <div class="container">
@@ -74,7 +46,6 @@
                 const email = document.getElementById('floatingInput').value;
                 const password = document.getElementById('floatingPassword').value;
                 console.log('Login attempt:', { email, password });
-                // Here you would typically send this data to your server
             });
         });
     </script>
