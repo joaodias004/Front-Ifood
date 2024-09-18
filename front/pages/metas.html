@@ -6,33 +6,31 @@
     <title>Metas Financeiras</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="/assets/css/styles.css">
+    <link rel="stylesheet" href="../assets/css/styles.css">
     <style>
-        /* General card styling for consistency */
         .card {
             margin-bottom: 20px;
             border-radius: 10px;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
 
-        /* Update chart container to match the base chart */
         .goal-progress {
             position: relative;
-            height: 250px; /* Match height with chart-container */
-            width: 100%;    /* Ensure it fills the width available */
-            max-width: 600px; /* Optional: Set a max-width for better control */
-            margin: 0 auto; /* Center align horizontally */
+            height: 250px;
+            width: 100%; 
+            max-width: 600px;
+            margin: 0 auto;
         }
 
         .goal-progress canvas {
             position: absolute;
             top: 0;
             left: 0;
-            width: 100%;  /* Ensure canvas scales with container */
-            height: 100%; /* Ensure canvas scales with container */
+            width: 100%; 
+            height: 100%;
         }
 
-        /* Center the text in the middle of the canvas */
+
         .goal-text {
             position: absolute;
             top: 50%;
@@ -41,16 +39,16 @@
             text-align: center;
             font-size: 24px;
             font-weight: bold;
-            color: #333; /* Adjust color for visibility */
+            color: #333;
         }
 
         .goal-subtext {
             font-size: 14px;
             font-weight: normal;
-            color: #666; /* Adjust color for visibility */
+            color: #666;
         }
 
-        /* Ensure expense card style consistency */
+
         .expense-card {
             background-color: #fff;
             border-radius: 10px;
@@ -73,21 +71,21 @@
             color: white;
         }
 
-        /* Ensure this matches the base chart */
+
         .chart-container, .goal-progress {
             position: relative;
-            width: 100%; /* Full width of the parent container */
-            max-width: 600px; /* Optional: Set a max-width for consistency */
-            height: 250px; /* Ensure height is consistent */
-            margin: 0 auto; /* Center horizontally */
+            width: 100%;
+            max-width: 600px;
+            height: 250px;
+            margin: 0 auto; 
         }
 
         .chart-container canvas, .goal-progress canvas {
             position: absolute;
             top: 0;
             left: 0;
-            width: 100%; /* Ensure canvas scales with container */
-            height: 100%; /* Ensure canvas scales with container */
+            width: 100%;
+            height: 100%;
         }
 
     </style>
@@ -101,7 +99,7 @@
                     <h5 class="px-3 mb-3">Gerenciamento</h5>
                     <ul class="nav flex-column">
                         <li class="nav-item">
-                            <a class="nav-link" href="main.html"><i class="fas fa-home me-2"></i>Página inicial</a>
+                            <a class="nav-link" href="index.html"><i class="fas fa-home me-2"></i>Página inicial</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="saldos.html"><i class="fas fa-wallet me-2"></i>Saldos</a>
@@ -138,7 +136,7 @@
                     <h1 class="h2">Metas</h1>
                     <div class="btn-toolbar mb-2 mb-md-0">
                         <div class="btn-group me-2">
-                            <span class="text-muted me-2">Junho 14, 2024</span>
+                            <span class="text-muted me-2" id="current-date"></span>
                         </div>
                         <div class="input-group">
                             <input type="text" class="form-control" placeholder="Buscar...">
@@ -147,28 +145,25 @@
                     </div>
                 </div>
 
-                <div class="row mt-4"> <!-- Add mt-4 for margin-top -->
-                    <!-- Meta de Faturamento e Faturamento do Dia Por Hora -->
+                <div class="row mt-4"> 
+                    <!-- Meta de Faturamento e Faturamento do Dia-->
                     <div class="col-md-6 mb-4">
                         <div class="card">
                             <div class="card-body">
                                 <div class="d-flex justify-content-between align-items-center mb-3">
                                     <h5 class="card-title mb-0">Meta De Faturamento</h5>
-                                    <select class="form-select" style="width: auto;">
-                                        <option>01 Jun - 31 Jun</option>
-                                    </select>
                                 </div>
                                 <div class="d-flex justify-content-between align-items-center">
                                     <div>
-                                        <p class="mb-0"><i class="fas fa-trophy me-2"></i>Objetivo alcançado</p>
-                                        <h3>R$12,500</h3>
-                                        <p class="mb-0 mt-3"><i class="fas fa-bullseye me-2"></i>Objetivo do mês</p>
-                                        <h3>R$20,000</h3>
+                                        <p class="mb-0"><i class="fas fa-trophy me-2"></i><span id="achievedValue">Valor atingido: </span></p>
+                                        <h3 id="totalValue"></h3>
+                                        <p class="mb-0 mt-3"><i class="fas fa-bullseye me-2"></i><span id="goalValue">Objetivo: </span></p>
+                                        <p class="mb-0 mt-3"><i class="fas fa-calendar me-2"></i><span id="date">Data: </span></p> <!-- Added date element -->
                                     </div>
                                     <div class="goal-progress">
-                                        <canvas id="goalChart"></canvas>
+                                        <canvas id="metasTabela"></canvas>
                                         <div class="goal-text">
-                                            12K
+                                            <div id="goalText">12K</div>
                                             <div class="goal-subtext">Meta X alcançado</div>
                                         </div>
                                     </div>
@@ -177,18 +172,17 @@
                             </div>
                         </div>
                     </div>
-                    
+
+
+                    <!-- Faturamento do Dia-->
                     <div class="col-md-6 mb-4">
                         <div class="card">
                             <div class="card-body">
                                 <div class="d-flex justify-content-between align-items-center mb-3">
                                     <h5 class="card-title mb-0">Faturamento Do Dia Por Hora</h5>
-                                    <select class="form-select" style="width: auto;">
-                                        <option>14/06/2024</option>
-                                    </select>
                                 </div>
                                 <div class="chart-container">
-                                    <canvas id="hourlyRevenueChart"></canvas>
+                                    <canvas id="faturamentoPorHora"></canvas>
                                 </div>
                             </div>
                         </div>
@@ -205,64 +199,11 @@
                 </main>
             </div>
         </div>
-    <script src="/js/despesas_categorizadas.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script>
-        var ctx1 = document.getElementById('goalChart').getContext('2d');
-        new Chart(ctx1, {
-            type: 'doughnut',
-            data: {
-                labels: ['Alcançado', 'Restante'],
-                datasets: [{
-                    data: [12500, 7500],
-                    backgroundColor: ['#004d00', '#E8E8E8']
-                }]
-            },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                plugins: {
-                    legend: {
-                        display: false
-                    }
-                }
-            }
-        });
-
-        var ctx2 = document.getElementById('hourlyRevenueChart').getContext('2d');
-        new Chart(ctx2, {
-            type: 'bar',
-            data: {
-                labels: ['08h', '09h', '10h', '11h', '12h', '13h', '14h'],
-                datasets: [{
-                    label: 'Faturamento por Hora',
-                    data: [50, 75, 100, 125, 150, 200, 250],
-                    backgroundColor: '#FF5722',
-                    borderColor: '#FF5722', 
-                    borderWidth: 1 
-                }]
-            },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                scales: {
-                    x: {
-                        beginAtZero: true,
-                        grid: {
-                            display: false 
-                        }
-                    },
-                    y: {
-                        beginAtZero: true,
-                        max: 300,
-                        stepSize: 100,
-                        grid: {
-                            color: '#E9ECEF' 
-                        }
-                    }
-                }
-            }
-        });
-    </script>
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+        <script src="../js/metas_tabela.js" defer></script>   
+        <script src="../js/data_atual.js" defer></script>   
+        <script src="../js/despesas_categorizadas.js" defer></script>
+        <script src="../js/faturamento_por_hora.js" defer></script>
 </body>
 </html>
+
