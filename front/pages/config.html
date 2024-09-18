@@ -34,14 +34,17 @@
         .employee-card .text-muted {
             font-size: 0.9rem;
         }
+
         .btn-fit-content {
             width: auto;
             display: inline-block;
         }
+
         .custom-container {
             padding-left: 0;
             padding-right: 0;
         }
+
         .custom-btn2 {
             background-color: #a52a2a;
             border-radius: 0.25rem;
@@ -53,7 +56,6 @@
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
             margin: 0 auto;
         }
-
     </style>
 </head>
 <body>
@@ -111,41 +113,50 @@
                 <div class="profile-form">
                     <ul class="nav nav-tabs mb-4">
                         <li class="nav-item">
-                            <a class="nav-link" href="#" id="accountTab">Conta</a>
+                            <a class="nav-link" id="account-tab" data-bs-toggle="tab" href="#accountContent">Conta</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link active" href="#" id="employeesTab">Gerenciar funcionários</a>
+                            <a class="nav-link active" id="employees-tab" data-bs-toggle="tab" href="#employeesContent">Gerenciar funcionários</a>
                         </li>
                     </ul>
-                    <div id="accountContent" style="display: none;">
-                        <form id="profileForm">
-                            <div class="mb-3">
-                                <label for="name" class="form-label">Nome</label>
-                                <input type="text" class="form-control" id="name" value="João Vitor">
-                            </div>
-                            <div class="mb-3">
-                                <label for="email" class="form-label">Email</label>
-                                <input type="email" class="form-control" id="email" value="joao.vitor@email.com.br">
-                            </div>
-                            <div class="mb-3">
-                                <label for="position" class="form-label">Cargo</label>
-                                <input type="text" class="form-control" id="position" value="Gerente">
-                            </div>
-                            <div class="mb-3">
-                                <label for="phone" class="form-label">Telefone</label>
-                                <input type="tel" class="form-control" id="phone" value="+55 54 99188-0784">
-                            </div>
-                            <button type="submit" class="btn btn-danger">Atualizar Perfil</button>
-                        </form>
-                    </div>
-                </div>
 
-                <!-- Empregados -->
-                <div id="employeesContent" class="custom-container">
-                    <div class="row">
-                        <!-- Linhas inseridas dinamicamente-->
+                    <!-- Tab content -->
+                    <div class="tab-content">
+                        <div class="tab-pane fade" id="accountContent">
+                            <form id="profileForm">
+                                <div class="mb-3">
+                                    <label for="name" class="form-label">Nome</label>
+                                    <input type="text" class="form-control" id="name" value="João Vitor">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="email" class="form-label">Email</label>
+                                    <input type="email" class="form-control" id="email" value="joao.vitor@email.com.br">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="position" class="form-label">Cargo</label>
+                                    <input type="text" class="form-control" id="position" value="Gerente">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="phone" class="form-label">Telefone</label>
+                                    <input type="tel" class="form-control" id="phone" value="+55 54 99188-0784">
+                                </div>
+                                <button type="submit" class="btn btn-danger">Atualizar Perfil</button>
+                            </form>
+                        </div>
+
+                        <!-- Employees Tab Content -->
+                        <div class="tab-pane fade show active" id="employeesContent">
+                            <div class="custom-container">
+                                <div class="row">
+                                    <!-- Linhas inseridas dinamicamente-->
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
+            </main>
+        </div>
+    </div>
             </main>
 
     <script src="../js/funcionarios.js"></script>
