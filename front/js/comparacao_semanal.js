@@ -74,6 +74,6 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     };
 
-    const ctx = document.getElementById('weeklyComparisonChart').getContext('2d');
+    const ctx = document.getElementById('comparacao_semanal_tabela').getContext('2d');
     new Chart(ctx, config);
 });

@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', function() {
         e.preventDefault();
         const email = document.getElementById('floatingInput').value;
         const password = document.getElementById('floatingPassword').value;
-        console.log('Login attempt:', { email, password });
+        console.log('Tentativa de login:', { email, password });
 
         window.location.href = 'index.html';
     });
