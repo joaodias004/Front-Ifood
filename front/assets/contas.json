@@ -1,0 +1,28 @@
+{
+  "transactions": [
+    {
+      "vencimento": {
+        "month": "Junho",
+        "day": "18"
+      },
+      "descricao": {
+        "title": "Luz - Mensal",
+        "detail": "Conta de luz"
+      },
+      "ultima_cobranca": "14 de Maio, 2024",
+      "quantia": "R$150"
+    },
+    {
+      "vencimento": {
+        "month": "Junho",
+        "day": "18"
+      },
+      "descricao": {
+        "title": "Aluguel - Mensal",
+        "detail": "Aluguel do espaço"
+      },
+      "ultima_cobranca": "15 de Maio, 2024",
+      "quantia": "R$150"
+    }
+  ]
+}

@@ -1,191 +1,268 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gerenciamento Dashboard</title>
+    <title>Metas Financeiras</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/assets/css/styles.css">
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f8f9fa;
-        }
-        .sidebar {
-            height: 100vh;
-            background-color: #343a40;
-            color: white;
-        }
-        .sidebar .nav-link {
-            color: #adb5bd;
-        }
-        .sidebar .nav-link.active {
-            background-color: #A52A2A;
-            color: white;
-        }
-        .main-content {
-            padding: 20px;
-        }
+        /* General card styling for consistency */
         .card {
             margin-bottom: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
-        .chart-container {
-            height: 200px;
-        }
-        .meter {
-            width: 200px;
-            height: 100px;
-            background-color: #e9ecef;
-            border-radius: 100px 100px 0 0;
+
+        /* Update chart container to match the base chart */
+        .goal-progress {
             position: relative;
-            overflow: hidden;
+            height: 250px; /* Match height with chart-container */
+            width: 100%;    /* Ensure it fills the width available */
+            max-width: 600px; /* Optional: Set a max-width for better control */
+            margin: 0 auto; /* Center align horizontally */
         }
-        .meter-fill {
+
+        .goal-progress canvas {
             position: absolute;
-            bottom: 0;
+            top: 0;
             left: 0;
-            width: 100%;
-            height: 60%;
-            background-color: #A52A2A;
-            transform-origin: bottom center;
-            transform: rotate(0deg);
-            transition: transform 0.5s;
+            width: 100%;  /* Ensure canvas scales with container */
+            height: 100%; /* Ensure canvas scales with container */
         }
+
+        /* Center the text in the middle of the canvas */
+        .goal-text {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            font-size: 24px;
+            font-weight: bold;
+            color: #333; /* Adjust color for visibility */
+        }
+
+        .goal-subtext {
+            font-size: 14px;
+            font-weight: normal;
+            color: #666; /* Adjust color for visibility */
+        }
+
+        /* Ensure expense card style consistency */
+        .expense-card {
+            background-color: #fff;
+            border-radius: 10px;
+            padding: 15px;
+            margin-bottom: 15px;
+        }
+
+        .expense-icon {
+            font-size: 24px;
+            margin-right: 15px;
+        }
+
+        .adjust-btn {
+            color: #A52A2A;
+            border-color: #A52A2A;
+        }
+
+        .adjust-btn:hover {
+            background-color: #A52A2A;
+            color: white;
+        }
+
+        /* Ensure this matches the base chart */
+        .chart-container, .goal-progress {
+            position: relative;
+            width: 100%; /* Full width of the parent container */
+            max-width: 600px; /* Optional: Set a max-width for consistency */
+            height: 250px; /* Ensure height is consistent */
+            margin: 0 auto; /* Center horizontally */
+        }
+
+        .chart-container canvas, .goal-progress canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%; /* Ensure canvas scales with container */
+            height: 100%; /* Ensure canvas scales with container */
+        }
+
     </style>
 </head>
 <body>
     <div class="container-fluid">
         <div class="row">
             <!-- Sidebar -->
-            <nav class="col-md-2 d-none d-md-block sidebar">
+            <nav class="col-md-3 col-lg-2 d-md-block sidebar collapse">
                 <div class="position-sticky">
+                    <h5 class="px-3 mb-3">Gerenciamento</h5>
                     <ul class="nav flex-column">
                         <li class="nav-item">
-                            <a class="nav-link" href="main.html"><i class="fas fa-home"></i> Página inicial</a>
+                            <a class="nav-link" href="main.html"><i class="fas fa-home me-2"></i>Página inicial</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="saldos.html"><i class="fas fa-chart-bar"></i> Saldos</a>
+                            <a class="nav-link" href="saldos.html"><i class="fas fa-wallet me-2"></i>Saldos</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="trnsc.html"><i class="fas fa-exchange-alt"></i> Transações</a>
+                            <a class="nav-link" href="trnsc.html"><i class="fas fa-exchange-alt me-2"></i>Transações</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="contas.html"><i class="fas fa-wallet"></i> Contas</a>
+                            <a class="nav-link" href="contas.html"><i class="fas fa-file-invoice-dollar me-2"></i>Contas</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="gastos.html"><i class="fas fa-money-bill-wave"></i> Gastos</a>
+                            <a class="nav-link" href="gastos.html"><i class="fas fa-chart-pie me-2"></i>Gastos</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link active" href="metas.html"><i class="fas fa-bullseye"></i> Metas</a>
+                            <a class="nav-link active" href="metas.html"><i class="fas fa-bullseye me-2"></i>Metas</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#"><i class="fas fa-cog"></i> Preferências</a>
+                            <a class="nav-link" href="config.html"><i class="fas fa-cog me-2"></i>Preferências</a>
                         </li>
                     </ul>
+                </div>
+                <div class="position-absolute bottom-0 start-0 p-3 w-100">
+                    <a class="nav-link text-white" href="#"><i class="fas fa-sign-out-alt me-2"></i>Sair</a>
+                    <div class="d-flex align-items-center mt-2">
+                        <span>João Vitor</span>
+                        <button class="btn btn-link text-white-50 ms-2 p-0">Ver perfil</button>
+                    </div>
                 </div>
             </nav>
 
             <!-- Main content -->
-            <main class="col-md-10 ms-sm-auto px-md-4 main-content">
+            <div class="col-md-9 ms-sm-auto col-lg-10 px-md-4 main-content">
                 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
                     <h1 class="h2">Metas</h1>
                     <div class="btn-toolbar mb-2 mb-md-0">
-                        <input type="text" class="form-control" placeholder="Buscar...">
+                        <div class="btn-group me-2">
+                            <span class="text-muted me-2">Junho 14, 2024</span>
+                        </div>
+                        <div class="input-group">
+                            <input type="text" class="form-control" placeholder="Buscar...">
+                            <button class="btn btn-outline-secondary" type="button"><i class="fas fa-search"></i></button>
+                        </div>
                     </div>
                 </div>
 
-                <div class="row">
-                    <!-- Meta de Faturamento -->
-                    <div class="col-md-6">
+                <div class="row mt-4"> <!-- Add mt-4 for margin-top -->
+                    <!-- Meta de Faturamento e Faturamento do Dia Por Hora -->
+                    <div class="col-md-6 mb-4">
                         <div class="card">
                             <div class="card-body">
-                                <h5 class="card-title">Meta De Faturamento</h5>
-                                <div class="meter">
-                                    <div class="meter-fill" style="transform: rotate(108deg);"></div>
+                                <div class="d-flex justify-content-between align-items-center mb-3">
+                                    <h5 class="card-title mb-0">Meta De Faturamento</h5>
+                                    <select class="form-select" style="width: auto;">
+                                        <option>01 Jun - 31 Jun</option>
+                                    </select>
                                 </div>
-                                <p>Objetivo alcançado: R$12,500</p>
-                                <p>Objetivo do mês: R$20,000</p>
-                                <button class="btn btn-outline-primary btn-sm">Ajustar Meta</button>
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <div>
+                                        <p class="mb-0"><i class="fas fa-trophy me-2"></i>Objetivo alcançado</p>
+                                        <h3>R$12,500</h3>
+                                        <p class="mb-0 mt-3"><i class="fas fa-bullseye me-2"></i>Objetivo do mês</p>
+                                        <h3>R$20,000</h3>
+                                    </div>
+                                    <div class="goal-progress">
+                                        <canvas id="goalChart"></canvas>
+                                        <div class="goal-text">
+                                            12K
+                                            <div class="goal-subtext">Meta X alcançado</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <button class="btn btn-outline-primary adjust-btn mt-3">Ajustar Meta</button>
                             </div>
                         </div>
                     </div>
-
-                    <!-- Faturamento Do Dia Por Hora -->
-                    <div class="col-md-6">
+                    
+                    <div class="col-md-6 mb-4">
                         <div class="card">
                             <div class="card-body">
-                                <h5 class="card-title">Faturamento Do Dia Por Hora</h5>
+                                <div class="d-flex justify-content-between align-items-center mb-3">
+                                    <h5 class="card-title mb-0">Faturamento Do Dia Por Hora</h5>
+                                    <select class="form-select" style="width: auto;">
+                                        <option>14/06/2024</option>
+                                    </select>
+                                </div>
                                 <div class="chart-container">
-                                    <!-- Placeholder for chart -->
-                                    <p>Chart goes here</p>
+                                    <canvas id="hourlyRevenueChart"></canvas>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-
-                <h3 class="mt-4">Gastos por categoria</h3>
-                <div class="row">
-                    <!-- Gastos categories -->
-                    <div class="col-md-4">
-                        <div class="card">
-                            <div class="card-body">
-                                <h5 class="card-title">Aluguel e Afins</h5>
-                                <p class="card-text">R$2250,00</p>
-                                <button class="btn btn-outline-primary btn-sm">Ajustar</button>
-                            </div>
+        
+                    <div class="row">
+                        <!--Gastos por categoria -->
+                        <h2 class="mt-4 mb-3">Gastos por categoria</h2>
+                        <div class="row" id="expenseCategories">
+                            <!-- Linhas inseridas dinamicamente -->
                         </div>
                     </div>
-                    <div class="col-md-4">
-                        <div class="card">
-                            <div class="card-body">
-                                <h5 class="card-title">Ingredientes</h5>
-                                <p class="card-text">R$500,00</p>
-                                <button class="btn btn-outline-primary btn-sm">Ajustar</button>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="card">
-                            <div class="card-body">
-                                <h5 class="card-title">Vale Transporte</h5>
-                                <p class="card-text">R$540,00</p>
-                                <button class="btn btn-outline-primary btn-sm">Ajustar</button>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="card">
-                            <div class="card-body">
-                                <h5 class="card-title">Taxas</h5>
-                                <p class="card-text">R$300,00</p>
-                                <button class="btn btn-outline-primary btn-sm">Ajustar</button>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="card">
-                            <div class="card-body">
-                                <h5 class="card-title">Outros Insumos</h5>
-                                <p class="card-text">R$300,00</p>
-                                <button class="btn btn-outline-primary btn-sm">Ajustar</button>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="card">
-                            <div class="card-body">
-                                <h5 class="card-title">Outros</h5>
-                                <p class="card-text">R$900,00</p>
-                                <button class="btn btn-outline-primary btn-sm">Ajustar</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </main>
+                </main>
+            </div>
         </div>
-    </div>
+    <script src="/js/despesas_categorizadas.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        var ctx1 = document.getElementById('goalChart').getContext('2d');
+        new Chart(ctx1, {
+            type: 'doughnut',
+            data: {
+                labels: ['Alcançado', 'Restante'],
+                datasets: [{
+                    data: [12500, 7500],
+                    backgroundColor: ['#004d00', '#E8E8E8']
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        display: false
+                    }
+                }
+            }
+        });
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+        var ctx2 = document.getElementById('hourlyRevenueChart').getContext('2d');
+        new Chart(ctx2, {
+            type: 'bar',
+            data: {
+                labels: ['08h', '09h', '10h', '11h', '12h', '13h', '14h'],
+                datasets: [{
+                    label: 'Faturamento por Hora',
+                    data: [50, 75, 100, 125, 150, 200, 250],
+                    backgroundColor: '#FF5722',
+                    borderColor: '#FF5722', 
+                    borderWidth: 1 
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    x: {
+                        beginAtZero: true,
+                        grid: {
+                            display: false 
+                        }
+                    },
+                    y: {
+                        beginAtZero: true,
+                        max: 300,
+                        stepSize: 100,
+                        grid: {
+                            color: '#E9ECEF' 
+                        }
+                    }
+                }
+            }
+        });
+    </script>
 </body>
 </html>
